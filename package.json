@@ -1,10 +1,13 @@
 {
   "name": "next-routing",
   "version": "0.1.0",
+  "homepage": "https://Arshaluys84.github.io/nextjs-routing",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -15,6 +18,7 @@
   },
   "devDependencies": {
     "eslint": "8.13.0",
-    "eslint-config-next": "12.1.5"
+    "eslint-config-next": "12.1.5",
+    "gh-pages": "^3.2.3"
   }
 }
