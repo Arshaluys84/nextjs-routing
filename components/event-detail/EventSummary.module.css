@@ -1,0 +1,19 @@
+.summary {
+  width: 100%;
+  height: 30vh;
+  background-image: linear-gradient(to bottom left, #aeadcd, #2c788f)
+}
+
+.summary h1 {
+  margin: 0;
+  padding-top: 1rem;
+  font-size: 2rem;
+  text-align: center;
+  color: white;
+}
+
+@media (min-width: 768px) {
+  .summary h1 {
+    font-size: 3rem;
+  }
+}
