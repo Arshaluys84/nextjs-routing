@@ -112,7 +112,7 @@ const MOCKDATA = [
   },
 ];
 
-export function getFeaturedEvents() {
+export function getFeaturedEvents2() {
   return MOCKDATA.filter((event) => event.isFeatured);
 }
 
