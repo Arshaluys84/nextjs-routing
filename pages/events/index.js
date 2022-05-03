@@ -3,10 +3,11 @@ import { getAllEvents } from "../mockData";
 
 import EventsList from "../../components/events/EventsList";
 import EventsSearch from "../../components/events/EventsSearch";
+import { getAllData, getFeaturedEvents } from "../../helpers/api_util";
 
-const AllEventsPage = () => {
-  const events = getAllEvents();
+const AllEventsPage = ({ allEvents }) => {
   const router = useRouter();
+  // const events = getAllEvents();
 
   const onSearchHandler = (year, month) => {
     router.push(`/events/${year}/${month}`);
@@ -15,9 +16,17 @@ const AllEventsPage = () => {
   return (
     <div>
       <EventsSearch onSearch={onSearchHandler} />
-      <EventsList events={events} />
+      <EventsList events={allEvents} />
     </div>
   );
 };
-
+export async function getStaticProps() {
+  const events = await getAllData();
+  return {
+    props: {
+      allEvents: events,
+    },
+    revalidate: 1,
+  };
+}
 export default AllEventsPage;

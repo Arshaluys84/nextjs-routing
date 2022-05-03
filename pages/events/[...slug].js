@@ -1,22 +1,50 @@
-import { useRouter } from "next/router";
-
-import { getFilteredEvents } from "../mockData";
+import { getFilteredEvents } from "../../helpers/api_util";
 import EventsList from "../../components/events/EventsList";
 import ResultsTitle from "../../components/events/ResultsTitle";
 import ErrorAlert from "../../components/UI/ErrorAlert/ErrorAlert";
+import Button from "../../components/UI/button/Button";
 
-const EventsSlugPage = () => {
-  const router = useRouter();
-  const url = router.query.slug;
-
-  if (!url) {
+const EventsSlugPage = ({ hasError, filteredEvents, dateFilter }) => {
+  if (hasError) {
     return (
       <>
         <ErrorAlert>
-          <p className="center">Loading....</p>;
+          <p className="center">Invalid url . Please check it .</p>;
         </ErrorAlert>
       </>
     );
+  }
+
+  if (!filteredEvents || !filteredEvents.length) {
+    return (
+      <>
+        <ErrorAlert>
+          <p className="center">There is no any event</p>
+        </ErrorAlert>
+        <div className="center">
+          <Button link="/events">Show all Events</Button>
+        </div>
+      </>
+    );
+  } else {
+    const date = new Date(dateFilter.year, dateFilter.month - 1);
+    return (
+      <div>
+        <ResultsTitle date={date} />
+        <EventsList events={filteredEvents} />
+      </div>
+    );
+  }
+};
+export async function getServerSideProps(context) {
+  const { params } = context;
+  const url = params.slug;
+  if (!url) {
+    return {
+      props: {
+        hasError: true,
+      },
+    };
   }
   if (
     isNaN(url[0]) ||
@@ -26,35 +54,24 @@ const EventsSlugPage = () => {
     url[1] > 12 ||
     url[1] < 1
   ) {
-    return (
-      <>
-        <ErrorAlert>
-          <p className="center">Invalid url . Please check it .</p>;
-        </ErrorAlert>
-      </>
-    );
+    return {
+      props: {
+        hasError: true,
+      },
+    };
   }
-  const filteredEvents = getFilteredEvents({
+  const filteredEvents = await getFilteredEvents({
     year: +url[0] || 2021,
     month: +url[1],
   });
-  if (!filteredEvents || !filteredEvents.length) {
-    return (
-      <>
-        <ErrorAlert>
-          <p className="center">There is no any event</p>
-        </ErrorAlert>
-      </>
-    );
-  } else {
-    const date = new Date(url[0], url[1] - 1);
-    return (
-      <div>
-        <ResultsTitle date={date} />
-        <EventsList events={filteredEvents} />
-      </div>
-    );
-  }
-};
-
+  return {
+    props: {
+      filteredEvents: filteredEvents,
+      dateFilter: {
+        year: +url[0],
+        month: +url[1],
+      },
+    },
+  };
+}
 export default EventsSlugPage;
