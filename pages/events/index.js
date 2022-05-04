@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { getAllEvents } from "../mockData";
+import Head from "next/head";
 
 import EventsList from "../../components/events/EventsList";
 import EventsSearch from "../../components/events/EventsSearch";
@@ -15,6 +15,13 @@ const AllEventsPage = ({ allEvents }) => {
 
   return (
     <div>
+      <Head>
+        <title>All Events</title>
+        <meta
+          name="description"
+          content="All events  we  can  see  here as a featured events"
+        />
+      </Head>
       <EventsSearch onSearch={onSearchHandler} />
       <EventsList events={allEvents} />
     </div>

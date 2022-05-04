@@ -1,5 +1,5 @@
 import { getEventById, getFeaturedEvents } from "../../helpers/api_util";
-
+import Head from "next/head";
 import EventContent from "../../components/event-detail/EventContent";
 import EventLogistics from "../../components/event-detail/EventLogistics";
 import EventSummary from "../../components/event-detail/EventSummary";
@@ -22,6 +22,10 @@ const EventDetailPage = ({ event }) => {
 
   return (
     <div>
+      <Head>
+        <title>{event.title}</title>
+        <meta name="description" content={event.description} />
+      </Head>
       <EventSummary title={event.title} />
       <EventLogistics
         date={event.date}

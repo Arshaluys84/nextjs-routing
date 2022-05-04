@@ -3,6 +3,7 @@ import EventsList from "../../components/events/EventsList";
 import ResultsTitle from "../../components/events/ResultsTitle";
 import ErrorAlert from "../../components/UI/ErrorAlert/ErrorAlert";
 import Button from "../../components/UI/button/Button";
+import Head from "next/head";
 
 const EventsSlugPage = ({ hasError, filteredEvents, dateFilter }) => {
   if (hasError) {
@@ -30,6 +31,13 @@ const EventsSlugPage = ({ hasError, filteredEvents, dateFilter }) => {
     const date = new Date(dateFilter.year, dateFilter.month - 1);
     return (
       <div>
+        <Head>
+          <title>Filtered Events</title>
+          <meta
+            name="description"
+            content={`Filtered events for ${dateFilter.year}/${dateFilter.month}`}
+          />
+        </Head>
         <ResultsTitle date={date} />
         <EventsList events={filteredEvents} />
       </div>
