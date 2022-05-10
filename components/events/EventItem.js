@@ -1,3 +1,4 @@
+import Image from "next/image";
 import AddressIcon from "../icons/AddressIcon";
 import ArrowRightIcon from "../icons/ArrowRightIcon";
 import DateIcon from "../icons/DateIcon";
@@ -14,7 +15,8 @@ const EventItem = ({ evt }) => {
   });
   return (
     <li className={styles.item}>
-      <img src={"/" + evt.image} alt={evt.title} />
+      {/* <img src={"/" + evt.image} alt={evt.title} /> */}
+      <Image src={"/" + evt.image} alt={evt.title} width={250} height={160} />
       <div className={styles.content}>
         <div>
           <h2>{evt.title}</h2>

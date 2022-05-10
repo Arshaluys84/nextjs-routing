@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Link from "next/link";
 import Head from "next/head";
 
 import EventsList from "../../components/events/EventsList";
@@ -24,6 +25,9 @@ const AllEventsPage = ({ allEvents }) => {
       </Head>
       <EventsSearch onSearch={onSearchHandler} />
       <EventsList events={allEvents} />
+      <div>
+        <Link href="/Feedback">Feedback</Link>
+      </div>
     </div>
   );
 };

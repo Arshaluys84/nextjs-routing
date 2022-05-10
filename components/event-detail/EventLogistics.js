@@ -1,3 +1,4 @@
+import Image from "next/image";
 import AddressIcon from "../icons/AddressIcon";
 import DateIcon from "../icons/DateIcon";
 
@@ -16,9 +17,8 @@ function EventLogistics({ date, address, image, imageAlt }) {
   return (
     <section className={styles.logistics}>
       <div className={styles.image}>
-
-        <img src={`/${image}`} alt={imageAlt} />
-
+        <Image src={`/${image}`} alt={imageAlt} width={400} height={400} />
+        {/* <img src={`/${image}`} alt={imageAlt} /> */}
       </div>
       <ul className={styles.list}>
         <LogisticsItem icon={DateIcon}>
