@@ -1,9 +1,10 @@
 import { MongoClient } from "mongodb";
 
 export async function connectDataBase() {
-  return await MongoClient.connect(
-    "mongodb+srv://arsh:pI9Ig4DSarfrvg2r@events.rzqzs.mongodb.net/test"
-  );
+  return await MongoClient
+    .connect
+    //   "mongodb+srv://arsh:pI9Ig4DSarfrvg2r@events.rzqzs.mongodb.net/test"
+    ();
 }
 export async function insertDataToDataBase(client, collection, newData) {
   const db = client.db();
