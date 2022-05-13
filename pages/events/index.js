@@ -5,6 +5,7 @@ import Head from "next/head";
 import EventsList from "../../components/events/EventsList";
 import EventsSearch from "../../components/events/EventsSearch";
 import { getAllData, getFeaturedEvents } from "../../helpers/api_util";
+import NewsletterRegistration from "../../components/input/NewsletterRegistration";
 
 const AllEventsPage = ({ allEvents }) => {
   const router = useRouter();
@@ -23,6 +24,7 @@ const AllEventsPage = ({ allEvents }) => {
           content="All events  we  can  see  here as a featured events"
         />
       </Head>
+      <NewsletterRegistration />
       <EventsSearch onSearch={onSearchHandler} />
       <EventsList events={allEvents} />
       <div>

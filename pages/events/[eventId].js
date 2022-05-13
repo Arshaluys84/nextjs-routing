@@ -4,6 +4,7 @@ import EventContent from "../../components/event-detail/EventContent";
 import EventLogistics from "../../components/event-detail/EventLogistics";
 import EventSummary from "../../components/event-detail/EventSummary";
 import ErrorAlert from "../../components/UI/ErrorAlert/ErrorAlert";
+import Comments from "../../components/input/Comments";
 
 const EventDetailPage = ({ event }) => {
   // const router = useRouter();
@@ -35,6 +36,7 @@ const EventDetailPage = ({ event }) => {
       />
 
       <EventContent>{event.description}</EventContent>
+      <Comments eventId={event.id} />
     </div>
   );
 };
